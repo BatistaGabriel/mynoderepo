@@ -1,0 +1,11 @@
+{
+  "name": "mynoderepo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:BatistaGabriel/mynoderepo.git",
+  "author": "Gabriel Batista <gabriel_batista@outlook.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
