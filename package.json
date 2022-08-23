@@ -5,7 +5,13 @@
   "repository": "git@github.com:BatistaGabriel/mynoderepo.git",
   "author": "Gabriel Batista <gabriel_batista@outlook.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
   "dependencies": {
     "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
   }
 }
