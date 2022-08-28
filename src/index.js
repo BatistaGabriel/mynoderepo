@@ -40,7 +40,6 @@ function getAccountBalance(statement){
         }
     }, 0)
 
-    console.debug(balance);
 
     return balance
 }
@@ -63,7 +62,6 @@ app.post("/account", (request, response)=>{
         statement: []
     });
 
-    console.debug(customers);
 
     return response.status(201).end();
 })
@@ -79,8 +77,21 @@ app.post("/account", (request, response)=>{
 app.get("/statement", verifyIfExistsAccountByCPF, (request, response)=>{
     const {customer} = request;
 
-    console.debug(customer.statement);
     return response.json(customer.statement)
+})
+
+app.get("/statement/date", verifyIfExistsAccountByCPF, (request, response)=>{
+    const {customer} = request;
+    const {date} = request.query;
+
+    console.log(customer)
+    console.log(customer.statement)
+    console.log(customer.statement.created_at.toDateString())
+    console.log(customer.statement.type)
+    // console.log(customer.statement);
+    // console.log(customer.statement.filter(x => x.created_at !== undefined))
+
+    return response.json()
 })
 
 app.post("/deposit", verifyIfExistsAccountByCPF, (request, response)=>{
@@ -96,7 +107,6 @@ app.post("/deposit", verifyIfExistsAccountByCPF, (request, response)=>{
 
     customer.statement.push(statementOperation);
 
-    console.debug(customer.statement)
 
     return response.status(201).send();
 })
