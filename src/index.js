@@ -77,6 +77,13 @@ app.get("/account", verifyIfExistsAccountByCPF, (request, response)=>{
     return response.json(customer)
 })
 
+app.get("/balance", verifyIfExistsAccountByCPF, (request, response)=>{
+    const {customer} = request
+    const balance = getAccountBalance(customer.statement)
+
+    return response.status(200).json(balance)
+})
+
 app.post("/account", (request, response)=>{
     const {cpf, name} = request.body;
 
@@ -143,6 +150,16 @@ app.put("/account", verifyIfExistsAccountByCPF, (request, repsonse)=>{
     customer.name = name;
 
     return repsonse.status(201).send();
+})
+
+app.delete("/account", verifyIfExistsAccountByCPF, (request, response)=>{
+    const {customer} = request;
+
+    // splice
+    customers.splice(customer, 1)
+
+    // In a real world the status should be 204 without a json return
+    return response.status(200).json(customers)
 })
 
 app.listen(8332);
